@@ -1,0 +1,10 @@
+{
+  "name": "ClickHouse Development Environment",
+  "dockerFile": "Dockerfile",
+  "extensions": [
+    "ms-azuretools.vscode-docker"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  }
+}
