@@ -1,0 +1,7 @@
+FROM clickhouse/clickhouse-server
+
+# Expose the necessary ports
+EXPOSE 9000 8123
+
+# Start ClickHouse server
+CMD ["clickhouse-server"]
