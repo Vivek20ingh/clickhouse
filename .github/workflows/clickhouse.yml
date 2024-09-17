@@ -1,0 +1,26 @@
+name: ClickHouse Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    services:
+      clickhouse:
+        image: clickhouse/clickhouse-server
+        ports:
+          - 9000:9000
+          - 8123:8123
+        options: --health-cmd "curl --silent --fail http://localhost:8123/ping" --health-interval 10s --health-timeout 5s --health-retries 3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install ClickHouse client
+        run: sudo apt-get install -y clickhouse-client
+
+      - name: Run ClickHouse queries
+        run: |
+          clickhouse-client --query "SELECT 'Hello, ClickHouse!'"
